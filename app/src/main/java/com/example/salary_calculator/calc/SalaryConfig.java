@@ -6,12 +6,14 @@ public class SalaryConfig {
     private final double hoursPerDay;      // 如 8.0
 
 
+
     public SalaryConfig(double monthlySalary, double workDaysPerMonth, double hoursPerDay) {
         this.monthlySalary = monthlySalary;
         this.workDaysPerMonth = workDaysPerMonth;
         this.hoursPerDay = hoursPerDay;
     }
 
+    /** 月薪*/
     public double getMonthlySalary(){
         return monthlySalary;
     }

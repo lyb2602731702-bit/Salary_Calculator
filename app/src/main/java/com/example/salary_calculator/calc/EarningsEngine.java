@@ -6,21 +6,27 @@ public class EarningsEngine {
     public EarningsEngine(SalaryConfig config){
         this.config = config;
     }
-    /** 一个月有多少工作秒 */
+    /** 有多少秒 */
     public double getWorkSecondsPerMonth(){
         double days = config.getWorkDaysPerMonth();
         double hours = config.getHoursPerDay();
-        double totalSeconds = days * hours * 3600L;
-        return totalSeconds;
+        return days * hours * 3600L;
     }
 
     /** 每秒值多少钱 */
     private double getSalaryPerSecond(){
+        double monthSalary = config.getMonthlySalary();
+        double totalSeconds = getWorkSecondsPerMonth();
+        return monthSalary / totalSeconds;
 
     }
 
     /** 已工作 seconds 秒，赚了多少钱 */
     public double getEarnedAmount(long workedSeconds) {
-        // TODO: 秒数 × 每秒薪资；workedSeconds < 0 时你自己定规则（返回 0 或抛异常）
+        if (workedSeconds<0){
+            return 0;
+        }
+        double  playSecond = getSalaryPerSecond();
+        return workedSeconds * playSecond;
     }
 }
