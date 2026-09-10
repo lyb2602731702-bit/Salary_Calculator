@@ -6,6 +6,7 @@ public class EarningsEngine {
     public EarningsEngine(SalaryConfig config){
         this.config = config;
     }
+
     /** 有多少秒 */
     public double getWorkSecondsPerMonth(){
         double days = config.getWorkDaysPerMonth();
