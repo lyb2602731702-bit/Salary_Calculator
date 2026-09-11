@@ -14,11 +14,13 @@ import com.example.salary_calculator.calc.EarningsEngine;
 import com.example.salary_calculator.calc.SalaryConfig;
 import com.example.salary_calculator.databinding.ActivityMainBinding;
 
+import java.util.Calendar;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private EarningsEngine engine;
+    //工作时间
     private long workedSeconds = 0;
     private  final Handler handler = new Handler(Looper.getMainLooper());
 
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        SalaryConfig config = new SalaryConfig(21750,21.75,8);
+        SalaryConfig config = new SalaryConfig(8000,26,8);
         engine = new EarningsEngine(config);
         startTicking();
     }
@@ -51,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //1.秒数 +1
-                workedSeconds = workedSeconds + 1;
+                Calendar now = Calendar.getInstance();
+                workedSeconds = engine.getTodayWorkedSeconds(now);
                 //2.更新ui文字
                 updateEarnedText();
                 //3.执行1000ms，循环
