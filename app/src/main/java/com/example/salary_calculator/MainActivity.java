@@ -1,5 +1,6 @@
 package com.example.salary_calculator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -12,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.salary_calculator.calc.EarningsEngine;
 import com.example.salary_calculator.calc.SalaryConfig;
+import com.example.salary_calculator.calc.WorkDayRule;
 import com.example.salary_calculator.databinding.ActivityMainBinding;
 
 import java.util.Calendar;
@@ -35,9 +37,18 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        SalaryConfig config = new SalaryConfig(8000,26,8);
+        WorkDayRule rule = WorkDayRule.of(8,30,12,0,13,30,18,0);
+        SalaryConfig config = new SalaryConfig(3000,25,8,rule);
         engine = new EarningsEngine(config);
         startTicking();
+        init();
+    }
+
+    private void init(){
+        binding.btnSettings.setOnClickListener(v ->{
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        });
     }
 
     /** 更新文字*/

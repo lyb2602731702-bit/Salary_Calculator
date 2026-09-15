@@ -4,6 +4,7 @@ public class SalaryConfig {
     private final double monthlySalary;   // 月薪，元
     private final double workDaysPerMonth; // 如 21.75
     private final double hoursPerDay;      // 如 8.0
+    private final WorkDayRule workDayRule;
 
     /**
      * 构造薪资配置
@@ -11,10 +12,11 @@ public class SalaryConfig {
      * @param workDaysPerMonth 每月计薪工作日
      * @param hoursPerDay 每日工作小时
      */
-    public SalaryConfig(double monthlySalary, double workDaysPerMonth, double hoursPerDay) {
+    public SalaryConfig(double monthlySalary, double workDaysPerMonth, double hoursPerDay,WorkDayRule workDayRule) {
         this.monthlySalary = monthlySalary;
         this.workDaysPerMonth = workDaysPerMonth;
         this.hoursPerDay = hoursPerDay;
+        this.workDayRule = workDayRule;
     }
 
     /** 月薪*/
@@ -29,4 +31,5 @@ public class SalaryConfig {
     public double getHoursPerDay(){
         return hoursPerDay;
     }
+    public WorkDayRule getWorkDayRule(){return workDayRule;}
 }

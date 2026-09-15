@@ -21,7 +21,6 @@ public class EarningsEngine {
         double monthSalary = config.getMonthlySalary();
         double totalSeconds = getWorkSecondsPerMonth();
         return monthSalary / totalSeconds;
-
     }
 
     /** 已工作 赚了多少钱 */
@@ -42,16 +41,17 @@ public class EarningsEngine {
         long currentSec = hour * 3600 + minute * 60 + second;
 
         //固定基准
-        long startWork = 30600;   // 08:30 上班
-        long lunchStart = 43200;  // 12:00 午休开始
-        long lunchEnd = 48600;    // 13:30 午休结束
-        long endWork = 64800;     // 18:00 下班
+        WorkDayRule rule = config.getWorkDayRule();
+        long startWork = rule.getStartSecond();
+        long lunchStart = rule.getLunchStartSecond();
+        long lunchEnd = rule.getLunchEndSecond();
+        long endWork = rule.getEndSecond();
 
         if(currentSec < startWork){
             return 0;
         }
         if(currentSec >= endWork){
-            return 28800;
+            return (lunchStart - startWork) + (endWork - lunchEnd);
         }
         if(currentSec <= lunchStart){
             return currentSec - startWork;
@@ -59,7 +59,9 @@ public class EarningsEngine {
         if(currentSec <lunchEnd){
             return lunchStart - startWork;
         }
+        //上午工作时间
         long morningWork = lunchStart - startWork;
+        //下午工作时间
         long afternoonWork = currentSec - lunchEnd;
         return morningWork + afternoonWork;
     }

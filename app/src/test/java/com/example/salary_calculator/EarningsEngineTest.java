@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.example.salary_calculator.calc.EarningsEngine;
 import com.example.salary_calculator.calc.SalaryConfig;
+import com.example.salary_calculator.calc.WorkDayRule;
 
 import org.junit.Test;
 
@@ -11,7 +12,8 @@ public class EarningsEngineTest {
 
     @Test
     public void workSecondsPerMonth_isCorrect() {
-        SalaryConfig config = new SalaryConfig(21750, 21.75, 8);
+        WorkDayRule rule = WorkDayRule.of(8, 30, 12, 0, 13, 30, 18, 0);
+        SalaryConfig config = new SalaryConfig(21750, 21.75, 8, rule);
         EarningsEngine engine = new EarningsEngine(config);
         //输出每月秒数
         double seconds_result = engine.getWorkSecondsPerMonth();
