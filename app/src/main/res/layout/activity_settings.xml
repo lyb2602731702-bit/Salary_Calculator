@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,4 +7,36 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/et_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="上班 例如 8:30"
+        android:inputType="time"
+        />
+    <EditText
+        android:id="@+id/et_lunch_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="午休开始 例如 12:00"
+        android:inputType="time"
+        />
+    <EditText
+        android:id="@+id/et_lunch_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="午休结束 例如 13:30"
+        android:inputType="time" />
+    <EditText
+        android:id="@+id/et_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="下班 例如 18:00"
+        android:inputType="time" />
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="保存" />
+</LinearLayout>
