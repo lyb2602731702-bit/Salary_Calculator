@@ -2,14 +2,13 @@ package com.example.salary_calculator;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
-import com.example.salary_calculator.calc.EarningsEngine;
 import com.example.salary_calculator.databinding.ActivitySettingsBinding;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -27,6 +26,7 @@ public class SettingsActivity extends AppCompatActivity {
             return insets;
         });
         loadSettings();
+        setupSaveButton();
     }
 
     private void loadSettings() {
@@ -48,6 +48,14 @@ public class SettingsActivity extends AppCompatActivity {
                     String lunchEnd = binding.etLunchEnd.getText().toString().trim();
                     String end = binding.etEnd.getText().toString().trim();
 
+                    if (!isValidTime(start)
+                            ||!isValidTime(lunchStart)
+                            ||!isValidTime(lunchEnd)
+                            ||!isValidTime(end)
+                    ){
+                        Toast.makeText(this, "时间格式请用 8:30", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     SharedPreferences sp = getSharedPreferences("salary_settings", MODE_PRIVATE);
                     sp.edit()
                             .putString("start", start)
@@ -71,6 +79,4 @@ public class SettingsActivity extends AppCompatActivity {
             return false;
         }
     }
-
-
 }

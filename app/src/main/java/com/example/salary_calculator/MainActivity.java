@@ -1,6 +1,7 @@
 package com.example.salary_calculator;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -51,6 +52,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void reloadEngine(){
+        SharedPreferences sp = getSharedPreferences("salary_settings", MODE_PRIVATE);
+        WorkDayRule rule = sp.getString();
+        SalaryConfig config = new SalaryConfig(3000,25,8,rule);
+        engine = new EarningsEngine(config);
+    }
+
     /** 更新文字*/
     private void updateEarnedText(){
         double money = engine.getEarnedAmount(workedSeconds);
@@ -72,6 +80,16 @@ public class MainActivity extends AppCompatActivity {
                 handler.postDelayed(this,1000);
             }
         });
+    }
+    private boolean isValidTime(String text){
+        String[] parts = text.split(":");
+        if (parts.length != 2)return false;
+        try{
+            int hour = Integer.parseInt(parts[0]);
+            int minute = Integer.parseInt(parts[1]);
+        }catch (NumberFormatException e){
+            return false;
+        }
     }
 
     @Override
