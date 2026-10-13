@@ -11,6 +11,7 @@ public class SalaryConfig {
      * @param monthlySalary 月薪，单位元
      * @param workDaysPerMonth 每月计薪工作日
      * @param hoursPerDay 每日工作小时
+     * @param workDayRule 一天的上下班/午休规则
      */
     public SalaryConfig(double monthlySalary, double workDaysPerMonth, double hoursPerDay,WorkDayRule workDayRule) {
         this.monthlySalary = monthlySalary;
@@ -31,5 +32,6 @@ public class SalaryConfig {
     public double getHoursPerDay(){
         return hoursPerDay;
     }
+
     public WorkDayRule getWorkDayRule(){return workDayRule;}
 }

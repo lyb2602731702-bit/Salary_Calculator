@@ -38,9 +38,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        WorkDayRule rule = WorkDayRule.of(8,30,12,0,13,30,18,0);
-        SalaryConfig config = new SalaryConfig(3000,25,8,rule);
-        engine = new EarningsEngine(config);
+        reloadEngine();
         startTicking();
         init();
     }
@@ -54,7 +52,24 @@ public class MainActivity extends AppCompatActivity {
 
     private void reloadEngine(){
         SharedPreferences sp = getSharedPreferences("salary_settings", MODE_PRIVATE);
-        WorkDayRule rule = sp.getString();
+
+        String start = sp.getString("start", "8:30");
+        String lunchStart = sp.getString("lunch_start", "12:00");
+        String lunchEnd = sp.getString("lunch_end", "13:30");
+        String end = sp.getString("end", "18:00");
+
+        int[] startHM = parseHourMinute(start);
+        int[] lunchStartHM = parseHourMinute(lunchStart);
+        int[] lunchEndHM = parseHourMinute(lunchEnd);
+        int[] endHM = parseHourMinute(end);
+
+        WorkDayRule rule = WorkDayRule.of(
+                startHM[0], startHM[1],
+                lunchStartHM[0], lunchStartHM[1],
+                lunchEndHM[0], lunchEndHM[1],
+                endHM[0], endHM[1]
+        );
+
         SalaryConfig config = new SalaryConfig(3000,25,8,rule);
         engine = new EarningsEngine(config);
     }
@@ -81,15 +96,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private boolean isValidTime(String text){
+    /**
+    * 将sp中的时间用分割成小时和分钟位
+    */
+    private int[] parseHourMinute(String text){
         String[] parts = text.split(":");
-        if (parts.length != 2)return false;
-        try{
-            int hour = Integer.parseInt(parts[0]);
-            int minute = Integer.parseInt(parts[1]);
-        }catch (NumberFormatException e){
-            return false;
-        }
+        int hour = Integer.parseInt(parts[0]);
+        int minute = Integer.parseInt(parts[1]);
+        return new int[]{hour,minute};
     }
 
     @Override
