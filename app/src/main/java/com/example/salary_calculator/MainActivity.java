@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        reloadEngine();
         startTicking();
         init();
     }
@@ -50,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * 从 SharedPreferences 读出最新上下班时间，重建 EarningsEngine。
+     * <p>
+     * 调用时机：放在 {@link #onResume()}。
+     * 首次打开顺序是 onCreate → onResume，所以冷启动也会在这里加载配置；
+     * 从设置页返回时不会再走 onCreate，但会再走 onResume，因此能立刻用上新时间。
+     * 不要在这里调用 startTicking()，否则会开多个每秒循环。
+     */
     private void reloadEngine(){
         SharedPreferences sp = getSharedPreferences("salary_settings", MODE_PRIVATE);
 
@@ -69,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 lunchEndHM[0], lunchEndHM[1],
                 endHM[0], endHM[1]
         );
-
         SalaryConfig config = new SalaryConfig(3000,25,8,rule);
         engine = new EarningsEngine(config);
     }
@@ -104,6 +110,11 @@ public class MainActivity extends AppCompatActivity {
         int hour = Integer.parseInt(parts[0]);
         int minute = Integer.parseInt(parts[1]);
         return new int[]{hour,minute};
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        reloadEngine();
     }
 
     @Override
