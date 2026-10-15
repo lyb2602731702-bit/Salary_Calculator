@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
 import com.example.salary_calculator.databinding.ActivitySettingsBinding;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -35,47 +36,60 @@ public class SettingsActivity extends AppCompatActivity {
         String lunchStart = sp.getString("lunch_start", "12:00");
         String lunchEnd = sp.getString("lunch_end", "13:30");
         String end = sp.getString("end", "18:00");
+        String pay = sp.getString("pay", "8000");
+        String work = sp.getString("work", "26");
+        String hour = sp.getString("hour", "8");
         binding.etStart.setText(start);
         binding.etLunchStart.setText(lunchStart);
         binding.etLunchEnd.setText(lunchEnd);
         binding.etEnd.setText(end);
+        binding.etMonthSalary.setText(pay);
+        binding.etMonthWorking.setText(work);
+        binding.etDayWorking.setText(hour);
     }
 
     private void setupSaveButton() {
+        SharedPreferences sp = getSharedPreferences("salary_settings", MODE_PRIVATE);
         binding.btnSave.setOnClickListener(v -> {
                     String start = binding.etStart.getText().toString().trim();
                     String lunchStart = binding.etLunchStart.getText().toString().trim();
                     String lunchEnd = binding.etLunchEnd.getText().toString().trim();
                     String end = binding.etEnd.getText().toString().trim();
+                    String pay = binding.etMonthSalary.getText().toString().trim();
+                    String work = binding.etMonthWorking.getText().toString().trim();
+                    String hour = binding.etDayWorking.getText().toString().trim();
 
                     if (!isValidTime(start)
-                            ||!isValidTime(lunchStart)
-                            ||!isValidTime(lunchEnd)
-                            ||!isValidTime(end)
-                    ){
+                            || !isValidTime(lunchStart)
+                            || !isValidTime(lunchEnd)
+                            || !isValidTime(end)
+                    ) {
                         Toast.makeText(this, "时间格式请用 8:30", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    SharedPreferences sp = getSharedPreferences("salary_settings", MODE_PRIVATE);
+                    // 拿到SP编辑器，批量存入6组键值
                     sp.edit()
                             .putString("start", start)
                             .putString("lunch_start", lunchStart)
                             .putString("lunch_end", lunchEnd)
                             .putString("end", end)
+                            .putString("pay", pay)
+                            .putString("work", work)
+                            .putString("hour",hour)
                             .apply();   // 异步写入，常用这个
                     finish();
                 }
         );
     }
 
-    private boolean isValidTime(String text){
+    private boolean isValidTime(String text) {
         String[] parts = text.split(":");
-        if (parts.length != 2)return false;
-        try{
+        if (parts.length != 2) return false;
+        try {
             int h = Integer.parseInt(parts[0]);
             int m = Integer.parseInt(parts[1]);
-            return h >= 0 && h<= 23 && m>=0 && m <= 59;
-        }catch (NumberFormatException e){
+            return h >= 0 && h <= 23 && m >= 0 && m <= 59;
+        } catch (NumberFormatException e) {
             return false;
         }
     }

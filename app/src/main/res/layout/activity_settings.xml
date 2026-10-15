@@ -1,45 +1,253 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SettingsActivity"
     android:orientation="vertical"
     android:padding="24dp"
-    >
+    android:background="#F5F7FA"
+    tools:context=".SettingsActivity">
 
-    <EditText
-        android:id="@+id/et_start"
+    <!-- 第一组：工作时间设置 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="工作时间"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#303133"/>
+
+    <!-- 上班时间 -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="上班 例如 8:30"
-        android:inputType="time"
-        />
-    <EditText
-        android:id="@+id/et_lunch_start"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上班"
+            android:textSize="16sp"
+            android:width="70dp"/>
+
+        <EditText
+            android:id="@+id/et_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edittext"
+            android:hint="例如 8:30"
+            android:inputType="time"
+            android:maxLines="1"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="14dp"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <!-- 午休开始 -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="午休开始 例如 12:00"
-        android:inputType="time"
-        />
-    <EditText
-        android:id="@+id/et_lunch_end"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="午休开始"
+            android:textSize="16sp"
+            android:width="70dp"/>
+
+        <EditText
+            android:id="@+id/et_lunch_start"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edittext"
+            android:hint="例如 12:00"
+            android:inputType="time"
+            android:maxLines="1"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="14dp"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <!-- 午休结束 -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="午休结束 例如 13:30"
-        android:inputType="time" />
-    <EditText
-        android:id="@+id/et_end"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="午休结束"
+            android:textSize="16sp"
+            android:width="70dp"/>
+
+        <EditText
+            android:id="@+id/et_lunch_end"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edittext"
+            android:hint="例如 13:30"
+            android:inputType="time"
+            android:maxLines="1"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="14dp"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <!-- 下班时间 -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="下班 例如 18:00"
-        android:inputType="time" />
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下班"
+            android:textSize="16sp"
+            android:width="70dp"/>
+
+        <EditText
+            android:id="@+id/et_end"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edittext"
+            android:hint="例如 18:00"
+            android:inputType="time"
+            android:maxLines="1"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="14dp"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <!-- 分割线 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="24dp"
+        android:background="#E4E7ED"/>
+
+    <!-- 第二组：薪资设置 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="薪资计算"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#303133"/>
+
+    <!-- 月薪 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="月薪"
+            android:textSize="16sp"
+            android:width="70dp"/>
+
+        <EditText
+            android:id="@+id/et_month_salary"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edittext"
+            android:hint="例如 3000"
+            android:inputType="numberDecimal"
+            android:maxLines="1"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="14dp"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <!-- 月工作天数 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="月工作日"
+            android:textSize="16sp"
+            android:width="70dp"/>
+
+        <EditText
+            android:id="@+id/et_month_working"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edittext"
+            android:hint="例如 22"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="14dp"
+            android:textSize="16sp"/>
+    </LinearLayout>
+    <!-- 日工作时间 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="日工作小时"
+            android:textSize="16sp"
+            android:width="70dp"/>
+
+        <EditText
+            android:id="@+id/et_day_working"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_edittext"
+            android:hint="例如 8"
+            android:inputType="number"
+            android:maxLines="1"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="14dp"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <!-- 保存按钮 -->
     <Button
         android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="保存" />
+        android:layout_marginTop="32dp"
+        android:background="@drawable/bg_btn_save"
+        android:text="保存设置"
+        android:textColor="#FFFFFF"
+        android:textSize="17sp"
+        android:paddingVertical="14dp"/>
+
 </LinearLayout>

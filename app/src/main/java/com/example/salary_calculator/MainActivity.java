@@ -64,6 +64,13 @@ public class MainActivity extends AppCompatActivity {
         String lunchStart = sp.getString("lunch_start", "12:00");
         String lunchEnd = sp.getString("lunch_end", "13:30");
         String end = sp.getString("end", "18:00");
+        String pay = sp.getString("pay","8000");
+        String work = sp.getString("work","26");
+        String hour = sp.getString("hour","8");
+
+        double monthlySalary = Double.parseDouble(pay);
+        double workDaysPerMonth = Double.parseDouble(work);
+        double workHourPerDay = Double.parseDouble(hour);
 
         int[] startHM = parseHourMinute(start);
         int[] lunchStartHM = parseHourMinute(lunchStart);
@@ -76,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 lunchEndHM[0], lunchEndHM[1],
                 endHM[0], endHM[1]
         );
-        SalaryConfig config = new SalaryConfig(3000,25,8,rule);
+        SalaryConfig config = new SalaryConfig(monthlySalary,workDaysPerMonth,workHourPerDay,rule);
         engine = new EarningsEngine(config);
     }
 
