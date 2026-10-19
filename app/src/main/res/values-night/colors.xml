@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="home_bg">#141413</color>
+    <color name="home_ink">#F4F1EA</color>
+    <color name="home_muted">#A39E94</color>
+    <color name="home_live">#3DDC84</color>
+    <color name="settings_bg">#141413</color>
+    <color name="settings_title">#F4F1EA</color>
+    <color name="settings_divider">#2C2B28</color>
+    <color name="settings_input_text">#303133</color>
+</resources>

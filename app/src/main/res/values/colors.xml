@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="home_bg">#F6F4EF</color>
+    <color name="home_ink">#1C1B19</color>
+    <color name="home_muted">#8A847A</color>
+    <color name="home_live">#1F7A4D</color>
+    <color name="settings_bg">#F5F7FA</color>
+    <color name="settings_title">#303133</color>
+    <color name="settings_divider">#E4E7ED</color>
+    <color name="settings_input_text">#303133</color>
 </resources>

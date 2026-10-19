@@ -5,10 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:background="#F5F7FA"
+    android:background="@color/settings_bg"
     tools:context=".SettingsActivity">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp"
+        >
     <!-- 第一组：工作时间设置 -->
     <TextView
         android:layout_width="wrap_content"
@@ -16,7 +20,7 @@
         android:text="工作时间"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="#303133"/>
+        android:textColor="@color/settings_title"/>
 
     <!-- 上班时间 -->
     <LinearLayout
@@ -33,18 +37,21 @@
             android:textSize="16sp"
             android:width="70dp"/>
 
-        <EditText
-            android:id="@+id/et_start"
+        <TextView
+            android:id="@+id/tv_start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/bg_edittext"
-            android:hint="例如 8:30"
-            android:inputType="time"
             android:maxLines="1"
+            android:text="8:30"
+            android:textColor="@color/settings_input_text"
             android:paddingHorizontal="16dp"
             android:paddingVertical="14dp"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:clickable="true"
+            android:focusable="true"
+            />
     </LinearLayout>
 
     <!-- 午休开始 -->
@@ -62,14 +69,14 @@
             android:textSize="16sp"
             android:width="70dp"/>
 
-        <EditText
-            android:id="@+id/et_lunch_start"
+        <TextView
+            android:id="@+id/tv_lunch_start"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:text="12:00"
+            android:textColor="@color/settings_input_text"
             android:background="@drawable/bg_edittext"
-            android:hint="例如 12:00"
-            android:inputType="time"
             android:maxLines="1"
             android:paddingHorizontal="16dp"
             android:paddingVertical="14dp"
@@ -91,14 +98,14 @@
             android:textSize="16sp"
             android:width="70dp"/>
 
-        <EditText
-            android:id="@+id/et_lunch_end"
+        <TextView
+            android:id="@+id/tv_lunch_end"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:text="13:30"
+            android:textColor="@color/settings_input_text"
             android:background="@drawable/bg_edittext"
-            android:hint="例如 13:30"
-            android:inputType="time"
             android:maxLines="1"
             android:paddingHorizontal="16dp"
             android:paddingVertical="14dp"
@@ -120,15 +127,15 @@
             android:textSize="16sp"
             android:width="70dp"/>
 
-        <EditText
-            android:id="@+id/et_end"
+        <TextView
+            android:id="@+id/tv_end"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/bg_edittext"
-            android:hint="例如 18:00"
-            android:inputType="time"
             android:maxLines="1"
+            android:text="18:00"
+            android:textColor="@color/settings_input_text"
             android:paddingHorizontal="16dp"
             android:paddingVertical="14dp"
             android:textSize="16sp"/>
@@ -139,7 +146,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="24dp"
-        android:background="#E4E7ED"/>
+        android:background="@color/settings_divider"/>
 
     <!-- 第二组：薪资设置 -->
     <TextView
@@ -149,7 +156,7 @@
         android:text="薪资计算"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="#303133"/>
+        android:textColor="@color/settings_title"/>
 
     <!-- 月薪 -->
     <LinearLayout
@@ -173,6 +180,7 @@
             android:layout_weight="1"
             android:background="@drawable/bg_edittext"
             android:hint="例如 3000"
+            android:textColor="@color/settings_input_text"
             android:inputType="numberDecimal"
             android:maxLines="1"
             android:paddingHorizontal="16dp"
@@ -203,6 +211,7 @@
             android:layout_weight="1"
             android:background="@drawable/bg_edittext"
             android:hint="例如 22"
+            android:textColor="@color/settings_input_text"
             android:inputType="number"
             android:maxLines="1"
             android:paddingHorizontal="16dp"
@@ -231,6 +240,7 @@
             android:layout_weight="1"
             android:background="@drawable/bg_edittext"
             android:hint="例如 8"
+            android:textColor="@color/settings_input_text"
             android:inputType="number"
             android:maxLines="1"
             android:paddingHorizontal="16dp"
@@ -246,8 +256,9 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/bg_btn_save"
         android:text="保存设置"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/settings_bg"
         android:textSize="17sp"
         android:paddingVertical="14dp"/>
+    </LinearLayout>
 
 </LinearLayout>

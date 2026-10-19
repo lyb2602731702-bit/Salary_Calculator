@@ -32,6 +32,7 @@ public class EarningsEngine {
         return workedSeconds * playSecond;
     }
 
+
     /** 获取今天工作了多少秒*/
     public long getTodayWorkedSeconds(Calendar now){
         int hour = now.get(Calendar.HOUR_OF_DAY);
