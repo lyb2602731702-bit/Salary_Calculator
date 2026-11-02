@@ -92,6 +92,14 @@ public class MainActivity extends AppCompatActivity {
         double money = engine.getEarnedAmount(workedSeconds);
         String moneyText = String.format(Locale.CHINA,"¥%.2f",money);
         binding.tvEarned.setText(moneyText);
+
+        Calendar now = Calendar.getInstance();
+        long totalSeconds = engine.getClosingTime(now);
+        int h = (int)(totalSeconds /3600);
+        int m = (int)((totalSeconds % 3600) / 60);
+        int s = (int)(totalSeconds % 60);
+        String closingText = String.format(Locale.CHINA,"%02d:%02d:%02d",h,m,s);
+        binding.tvCountdown.setText(closingText);
     }
 
     /** 文字循环*/

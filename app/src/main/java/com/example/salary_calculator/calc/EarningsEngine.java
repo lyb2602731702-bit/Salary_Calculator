@@ -66,4 +66,23 @@ public class EarningsEngine {
         long afternoonWork = currentSec - lunchEnd;
         return morningWork + afternoonWork;
     }
+
+    /** 下班时间*/
+    public long getClosingTime (Calendar now){
+        int hour = now.get(Calendar.HOUR_OF_DAY);
+        int minute = now.get(Calendar.MINUTE);
+        int second = now.get(Calendar.SECOND);
+        //当前时刻距离今天0点的总秒
+        long currentSec = hour * 3600 + minute * 60 + second;
+
+        //固定基准
+        WorkDayRule rule = config.getWorkDayRule();
+        long endWork = rule.getEndSecond();
+
+        if(currentSec >= endWork){
+            return 0;
+        }
+        return endWork - currentSec;
+
+    }
 }
